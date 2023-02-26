@@ -40,10 +40,33 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TweetTableViewCell.identifier,for: indexPath) as? TweetTableViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         200
     }
+    
+}
+
+
+extension HomeViewController: TweetTableViewCellDelegate {
+    
+    func tweetTableViewCellDidTapReply() {
+        print("reply")
+    }
+    
+    func tweetTableViewCellDidTapRetweet() {
+        print("retweet")
+    }
+    
+    func tweetTableViewCellDidTapLike() {
+        print("like")
+    }
+    
+    func tweetTableViewCellDidTabShare() {
+        print("share")
+    }
+    
     
 }

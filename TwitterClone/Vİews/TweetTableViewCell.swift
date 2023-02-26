@@ -7,8 +7,23 @@
 
 import UIKit
 
-class TweetTableViewCell: UITableViewCell {
+protocol TweetTableViewCellDelegate: AnyObject {
+    func tweetTableViewCellDidTapReply()
+    func tweetTableViewCellDidTapRetweet()
+    func tweetTableViewCellDidTapLike()
+    func tweetTableViewCellDidTabShare()
+}
 
+
+
+
+
+
+
+
+
+class TweetTableViewCell: UITableViewCell {
+    weak var delegate: TweetTableViewCellDelegate?
     static let identifier = String(describing: TweetTableViewCell.self)
     private let actionSpacing: CGFloat = 80
     
@@ -89,8 +104,43 @@ class TweetTableViewCell: UITableViewCell {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(displayNameLabel)
         contentView.addSubview(usernameLabel)
+        contentView.addSubview(tweetTextContentLabel)
+        contentView.addSubview(replyButton)
+        contentView.addSubview(retweetButton)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(shareButton)
         configureConstraints()
+        configureButtons()
     }
+    
+    private func configureButtons() {
+        replyButton.addTarget(self, action: #selector(didTapReply), for: .touchUpInside)
+        retweetButton.addTarget(self, action: #selector(didTapRetweet), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(didTapShare), for: .touchUpInside)
+    }
+    
+    /// When clicked reply button
+    @objc private func didTapReply() {
+        delegate?.tweetTableViewCellDidTapReply()
+    }
+    
+    /// When clicked retweet button
+    @objc private func didTapRetweet(){
+        delegate?.tweetTableViewCellDidTapRetweet()
+    }
+    
+    /// When clicked like button
+    @objc private func didTapLike(){
+        delegate?.tweetTableViewCellDidTapLike()
+    }
+    
+    /// When clicked share button
+    @objc private func didTapShare(){
+        delegate?.tweetTableViewCellDidTabShare()
+    }
+
+    
     
     private func configureConstraints(){
         let avatarImageViewConstraints = [
