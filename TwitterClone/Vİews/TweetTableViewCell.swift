@@ -33,6 +33,8 @@ class TweetTableViewCell: UITableViewCell {
     
     private let usernameLabel: UILabel = {
         let label = UILabel()
+        label.text = "@Hsn"
+        label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 16,weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -55,7 +57,19 @@ class TweetTableViewCell: UITableViewCell {
             avatarImageView.widthAnchor.constraint(equalToConstant: 50)
         ]
         
+        let displayNameLabelConstraints = [
+            displayNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor,constant: 20),
+            displayNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 20),
+        ]
+        
+        let usernameLabelConstraints = [
+            usernameLabel.leadingAnchor.constraint(equalTo: displayNameLabel.trailingAnchor, constant: 10),
+            usernameLabel.centerYAnchor.constraint(equalTo: displayNameLabel.centerYAnchor)
+        ]
+        
         NSLayoutConstraint.activate(avatarImageViewConstraints)
+        NSLayoutConstraint.activate(displayNameLabelConstraints)
+        NSLayoutConstraint.activate(usernameLabelConstraints)
     }
     
     required init?(coder: NSCoder) {
