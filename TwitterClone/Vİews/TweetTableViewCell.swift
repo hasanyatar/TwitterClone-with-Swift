@@ -16,16 +16,10 @@ protocol TweetTableViewCellDelegate: AnyObject {
 
 
 
-
-
-
-
-
-
 class TweetTableViewCell: UITableViewCell {
     weak var delegate: TweetTableViewCellDelegate?
     static let identifier = String(describing: TweetTableViewCell.self)
-    private let actionSpacing: CGFloat = 80
+    private let actionSpacing: CGFloat = 60
     
     private let avatarImageView: UIImageView = {
        let imageView = UIImageView()
@@ -41,7 +35,7 @@ class TweetTableViewCell: UITableViewCell {
     
     private let displayNameLabel: UILabel = {
        let label = UILabel()
-        label.text = "Hasan YATAR"
+        label.text = "Elon Musk"
         label.font = .systemFont(ofSize: 18,weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -49,7 +43,7 @@ class TweetTableViewCell: UITableViewCell {
     
     private let usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "@Hsn"
+        label.text = "@elonmusk"
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 16,weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -66,35 +60,35 @@ class TweetTableViewCell: UITableViewCell {
     }()
     
     private let replyButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "bubble.left"), for: .normal)
+        button.setImage(UIImage(named: "replyIcon"), for: .normal)
         button.tintColor = .systemGray2
       
         return button
     }()
     
     private let retweetButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "arrow.2.squarepath"), for: .normal)
+        button.setImage(UIImage(named: "retweetIcon"), for: .normal)
         button.tintColor = .systemGray2
       
         return button
     }()
    
     private let likeButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.setImage(UIImage(named: "likeIcon"), for: .normal)
         button.tintColor = .systemGray2
         return button
     }()
     
     private let shareButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        button.setImage(UIImage(named: "shareIcon"), for: .normal)
         button.tintColor = .systemGray2
         return button
     }()
@@ -152,7 +146,8 @@ class TweetTableViewCell: UITableViewCell {
         
         let displayNameLabelConstraints = [
             displayNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor,constant: 20),
-            displayNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 20),
+            //displayNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 20),
+            displayNameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor)
         ]
         
         let usernameLabelConstraints = [
