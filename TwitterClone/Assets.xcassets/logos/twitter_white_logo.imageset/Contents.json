@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Twitter_white_logo.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "icon_user.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
